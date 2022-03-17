@@ -25,14 +25,12 @@ python3 run.py -h
 An example command for a training run using 3 fold cross validation:
 ```
 python3 --epochs 50 --lr 12e-4 --elmo_embedding --glove_embedding --device 0 --save_dir ./morio-model-runs/ -train
-
 ```
 
 
 An example command for evaluating on the test set: 
 ```
 python3 --device 0 --model_path ./morio-model-runs/example.pt -test
-
 ```
 
 ## Repo structure
