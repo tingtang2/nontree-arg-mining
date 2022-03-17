@@ -1,5 +1,3 @@
-from linecache import cache
-from unicodedata import bidirectional
 import torch
 from torch import nn
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence, PackedSequence, pad_sequence
@@ -7,8 +5,6 @@ from torch.nn.modules.rnn import apply_permutation
 from torch.nn import functional as F
 import torchtext
 from transformers import BertTokenizer, BertModel
-from transformers.models import bert
-
 
 
 class ScalarMix(nn.Module):

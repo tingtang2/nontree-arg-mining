@@ -1,0 +1,6 @@
+torch
+spacy
+tqdm 
+transformers 
+sklearn
+allennlp

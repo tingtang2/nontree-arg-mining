@@ -1,7 +1,6 @@
 import logging
 import torch
 from torch.utils.data.dataloader import DataLoader
-import wandb
 
 import argparse
 import json
@@ -11,10 +10,10 @@ from model import MorioModel
 from transformers import AdamW
 from sklearn.metrics import classification_report
 
-PATH_TO_DATASET = "/scratch/tc2vg/amazon_argmining_dataset/"
+PATH_TO_DATASET = "/"
 
-# torch dataset class for easy batching of amazon dataset by graph
-class AmazonDataset(torch.utils.data.Dataset):
+# torch dataset class for easy batching of CDCP dataset by graph
+class CDCPDataset(torch.utils.data.Dataset):
     def __init__(self, spacy_docs, prop_labels, edges):
         self.docs = spacy_docs # list of tuples of text and spans of dataset
         self.prop_labels = prop_labels # list of prop labels of dataset
@@ -126,8 +125,8 @@ def create_dataloaders():
     pos_to_idx = {pos: idx for idx, pos in enumerate(set(pos))}
 
     # set up dataset objects
-    train_dataset = AmazonDataset(docs_train, train_prop_labels, train_prop_edges)
-    test_dataset = AmazonDataset(docs_test, test_prop_labels, test_prop_edges)
+    train_dataset = CDCPDataset(docs_train, train_prop_labels, train_prop_edges)
+    test_dataset = CDCPDataset(docs_test, test_prop_labels, test_prop_edges)
 
     # set up data loaders
 
@@ -273,21 +272,12 @@ def main():
     parser.add_argument('--elmo_embedding', action='store_true', help='use elmo to encode')
     parser.add_argument('--glove_embedding', action='store_true', help='use glove to encode')
     parser.add_argument('--device', '-d', default=0, type=int, help='ID of GPU to use')
-    parser.add_argument('--save_dir', default='/scratch/tc2vg/morio-model-amazon-runs/', help='path to saved model files')
-    # parser.add_argument('--embed', default='data/glove.6B.100d.txt', help='path to pretrained embeddings')
-    # parser.add_argument('--unk', default='unk', help='unk token in pretrained embeddings')
-    # parser.add_argument('--bert', default='bert-base-cased', help='which BERT model to use')
+    parser.add_argument('--save_dir', default='./morio-model-runs/', help='path to saved model files')
+    parser.add_argument('-train', action='store_true', help='train model')
+    parser.add_argument('-test', action='store_true', help='test model on dataset')
 
     # Get the hyperparameters
     args = parser.parse_args()
-
-    # wandb.init(project="train_argmining_model_amazon", entity="tingtang2")
-    # Pass them to wandb.init
-    # wandb.init(config=args)
-    # Access all hyperparameter values through wandb.config
-    # config = wandb.config
-
-
 
     # filename for logging and saved models
     filename = f'morio-model-epochs-{args.epochs}-epochs-{args.lr}-lr'
