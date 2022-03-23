@@ -375,8 +375,8 @@ def main():
                 valid_print_flag = True
             valid_prop_f1, valid_edge_f1 = eval(valid_loader, mm, device, valid_print_flag)
 
-            print(f'Epoch: {epoch:02d}, Loss: {train_loss:.4f}, Train prop f1: {train_prop_f1:.4f}, Valid prop f1: {valid_prop_f1:.4f}, Train edge f1: {train_edge_f1:.4f}, Valid edge f1: {valid_edge_f1:.4f}')
-            logging.info(f'Epoch: {epoch:02d}, Loss: {train_loss:.4f}, Train prop f1: {train_prop_f1:.4f}, Test prop f1: {valid_prop_f1:.4f}, Train edge f1: {train_edge_f1:.4f}, Valid edge f1: {valid_edge_f1:.4f}')
+            print(f'Epoch: {epoch + 1:02d}, Loss: {train_loss:.4f}, Train prop f1: {train_prop_f1:.4f}, Valid prop f1: {valid_prop_f1:.4f}, Train edge f1: {train_edge_f1:.4f}, Valid edge f1: {valid_edge_f1:.4f}')
+            logging.info(f'Epoch: {epoch + 1:02d}, Loss: {train_loss:.4f}, Train prop f1: {train_prop_f1:.4f}, Test prop f1: {valid_prop_f1:.4f}, Train edge f1: {train_edge_f1:.4f}, Valid edge f1: {valid_edge_f1:.4f}')
 
         print('Finished Training and Saving Model')
         
@@ -384,7 +384,7 @@ def main():
         torch.save(mm.state_dict(), save_path)
     
     if args.test:
-        mm = MorioModel(word_to_idx, pos_to_idx, device, bert_embedding=args.bert, elmo_embedding=args.elmo, glove_embedding=args.glove)
+        mm = MorioModel(word_to_idx, pos_to_idx, device, bert_embedding=args.bert_embedding, elmo_embedding=args.elmo_embedding, glove_embedding=args.glove_embedding)
         mm.to(device)
         mm.load_state_dict(torch.load(args.checkpoint_path))
         mm.eval()
