@@ -585,7 +585,7 @@ class MorioModel(nn.Module):
     def forward(self, docs, token_offset):
         preprocessed_batch, batch_seq_lens = self.preprocess_batch(docs)
 
-        packed_batch = pack_padded_sequence(preprocessed_batch, batch_seq_lens, batch_first=True, enforce_sorted=False).cuda()
+        packed_batch = pack_padded_sequence(preprocessed_batch, batch_seq_lens, batch_first=True, enforce_sorted=False)
 
         encoded_batch, _ = self.encoder(packed_batch)
         padded_batch, _ = pad_packed_sequence(encoded_batch, batch_first=True)

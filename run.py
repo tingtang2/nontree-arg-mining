@@ -380,7 +380,7 @@ def main():
 
         print('Finished Training and Saving Model')
         
-        save_path = args.save_dir + filename + '-.pt'
+        save_path = args.save_dir + filename + '.pt'
         torch.save(mm.state_dict(), save_path)
     
     if args.test:
