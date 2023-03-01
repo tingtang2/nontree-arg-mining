@@ -1,5 +1,5 @@
 # nontree-arg-mining
-Implementation of [Morio et. al's](https://aclanthology.org/2020.acl-main.298/) argument mining system
+Implementation of the argument mining system from [Towards Better Non-Tree Argument Mining: Proposition-Level Biaffine Parsing with Task-Specific Parameterization](https://aclanthology.org/2020.acl-main.298/). 
 
 Code heavy inspired by the [SuPar repository](https://github.com/yzhangcs/parser).
 
@@ -7,13 +7,20 @@ Code heavy inspired by the [SuPar repository](https://github.com/yzhangcs/parser
 
 Please install libraries in the `requirements.txt` file using the following command:
 
-```
+```bash
 pip install -r requirements.txt
 ```
-Use of virtual environments is optional but recommended.
+Use of virtual environments is optional but recommended. For GPU support refer to the comments in the `requirements.txt` file.
+
+After installing the libraries from the `requirements.txt` file also run the following command
+to install the correct `spacy` pipeline:
+
+```bash
+python3 -m spacy download en_core_web_sm
+```
 
 
-Then change the `PATH_TO_DATASET` variable in the `run.py` file to the directory containing the CDCP dataset with transitive closure performed. This dataset is also available upon request. 
+Then change the `PATH_TO_DATASET` variable in the `run.py` file to the directory containing the CDCP dataset with transitive closure performed. This dataset is also available [here](https://tingtang2.github.io/files/CDCP_data.tar.gz). 
 ## Running the model
 
 Please run the following command for information on the command line arguments:

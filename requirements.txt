@@ -1,6 +1,9 @@
-torch
-spacy
-tqdm 
-transformers 
-sklearn
-allennlp
+# for gpu support on horn run pip install torch==1.9.1+cu102 --extra-index-url https://download.pytorch.org/whl/cu102
+# also run pip install 'spacy[cuda-autodetect] == 3.0.0'
+torch == 1.9.1
+spacy == 3.0.0
+transformers== 4.2.2
+tqdm
+scikit-learn
+allennlp == 2.6.0
+torchtext == 0.10.1

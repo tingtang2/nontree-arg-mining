@@ -4,5 +4,11 @@ include/
 lib/
 lib64/
 lib64
+etc/
+share/
 pip-selfcheck.json
 pyvenv.cfg
+
+__pycache__/
+
+*.log
